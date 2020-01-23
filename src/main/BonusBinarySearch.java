@@ -1,5 +1,7 @@
 package main;
 
+import java.util.concurrent.TimeUnit;
+
 public class BonusBinarySearch {
 
     /**
@@ -16,13 +18,21 @@ public class BonusBinarySearch {
         int left = 0;
         while (right >= left) {
             int mid = left + ((right - left) / 2);
+
             if (sortedNumbers[mid] > n) {
-                right = mid;
+                right = mid - 1;
             } else if (sortedNumbers[mid] < n) {
-                left = mid;
+                left = mid + 1;
             } else {
                 return mid;
             }
+            System.out.println("Left " + left + " Mid " + mid + " Right " + right);
+            try{
+                TimeUnit.MILLISECONDS.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } ;
+
         }
         return -1;
     }
